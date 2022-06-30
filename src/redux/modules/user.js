@@ -45,7 +45,7 @@ const loginDB = (dic) => {
   const { id: userId, pw: userPw } = dic
   return async function (dispatch, getState, { history }) {
     await axios
-      .post(`${BASE_URL}/user/login`, JSON.stringify({ userId, userPw }), {
+      .post(`https://gractor-dongsun.shop/user/login`, JSON.stringify({ userId, userPw }), {
         headers: { 'Content-Type': `application/json` },
       })
       .then((res) => {
@@ -78,7 +78,7 @@ const signupDB = (dic) => {
   return async function (dispatch, getState, { history }) {
     await axios
       .post(
-        `${BASE_URL}/user/register`,
+        `https://gractor-dongsun.shop/user/register`,
         JSON.stringify({
           userId,
           email,
@@ -105,7 +105,7 @@ const idCheck = (id) => {
     apis.checkId(id)
     await axios
       .post(
-        `${BASE_URL}/user/idCheck`,
+        `https://gractor-dongsun.shop/user/idCheck`,
         JSON.stringify({
           idCheck: id,
         }),
@@ -126,7 +126,7 @@ const emailCheck = (email) => {
   return async function (dispatch, useState, { history }) {
     await axios
       .post(
-        `${BASE_URL}/user/emailCheck`,
+        `https://gractor-dongsun.shop/user/emailCheck`,
         JSON.stringify({
           emailCheck: email,
         }),
@@ -147,7 +147,7 @@ const nickCheck = (nick) => {
   return async function (dispatch, useState, { history }) {
     await axios
       .post(
-        `${BASE_URL}/user/userNickCheck`,
+        `https://gractor-dongsun.shop/user/userNickCheck`,
         JSON.stringify({
           userNickCheck: nick,
         }),
@@ -169,7 +169,7 @@ const findPwDB = (dic) => {
   return async function (dispatch, getState, { history }) {
     await axios
       .post(
-        `${BASE_URL}/user/findPw`,
+        `https://gractor-dongsun.shop/user/findPw`,
         JSON.stringify({
           email,
           userId,
@@ -198,7 +198,7 @@ const changePwDB = (dic) => {
   return async function (dispatch, getState, { history }) {
     await axios
       .post(
-        `${BASE_URL}/user/changePw`,
+        `https://gractor-dongsun.shop/user/changePw`,
         JSON.stringify({
           email,
           userId,
@@ -229,7 +229,7 @@ const changeNickDB = (changeNick) => {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
       data: { changeNick },
-      url: `${BASE_URL}/user/changeNick`,
+      url: `https://gractor-dongsun.shop/user/changeNick`,
     })
       .then((response) => {
         alert('변경이 완료되었습니다')
@@ -248,7 +248,7 @@ const changeNickDB = (changeNick) => {
 const naverLogin = (code, state) => {
   return async function (dispatch, getState, { history }) {
     await axios
-      .get(`${BASE_URL}/naverLogin/callback?code=${code}&state=${state}`)
+      .get(`https://gractor-dongsun.shop/naverLogin/callback?code=${code}&state=${state}`)
       .then((res) => {
         const userId = res.data.naverId
         const userNick = res.data.naverNick
@@ -269,7 +269,7 @@ const naverLogin = (code, state) => {
 const kakaoLogin = (code) => {
   return async function (dispatch, getState, { history }) {
     await axios
-      .get(`${BASE_URL}/main?code=${code}`)
+      .get(`https://gractor-dongsun.shop/main?code=${code}`)
       .then((res) => {
         const accessToken = res.data.token
         const userId = res.data.userId
@@ -293,7 +293,7 @@ const logOutDB = (user) => {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
       method: 'GET',
-      url: `${BASE_URL}/user/logout`,
+      url: `https://gractor-dongsun.shop/user/logout`,
     })
       .then((res) => {
         localStorage.removeItem('token', 'userId')
@@ -308,7 +308,7 @@ const addFriendDB = (friendUserId) => {
   return async function (dispatch, getState, { history }) {
     await axios
       .post(
-        `${BASE_URL}/user/friendAdd`,
+        `https://gractor-dongsun.shop/user/friendAdd`,
         JSON.stringify({
           friendUserId,
         }),
@@ -340,7 +340,7 @@ const getFriendDB = () => {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
       method: 'post',
-      url: `${BASE_URL}/user/friendList`,
+      url: `https://gractor-dongsun.shop/user/friendList`,
     })
       .then((res) => {
         let list = res.data.friendList
@@ -354,7 +354,7 @@ const deleteFriendDB = (id) => {
   return async function (dispatch, useState, { history }) {
     await axios
       .post(
-        `${BASE_URL}/user/friendRemove`,
+        `https://gractor-dongsun.shop/user/friendRemove`,
         JSON.stringify({
           removeUserId: id,
         }),

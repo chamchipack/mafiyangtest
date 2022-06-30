@@ -37,8 +37,8 @@ function Header() {
   }
 
   React.useEffect(() => {
-    dispatch(memberActions.callPlayerRecord())
-    dispatch(memberActions.callUserProfile())
+    // dispatch(memberActions.callPlayerRecord())
+    // dispatch(memberActions.callUserProfile())
   }, [])
 
   return (
